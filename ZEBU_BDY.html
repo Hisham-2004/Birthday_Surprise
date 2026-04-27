@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* INTRO */
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      animation: fadeOut 4s forwards;
+      animation-delay: 3s;
+      z-index: 10;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    #main {
+      display: none;
+      padding-top: 30px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    #message {
+      line-height: 1.6;
+      min-height: 120px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    /* HEART */
+    .heart {
+      font-size: 50px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      50% { transform: scale(1.3); }
+    }
+
+    /* 🌟 NEW PREMIUM FRAME */
+    .slideshow {
+      width: 320px;
+      height: 320px;
+      margin: 30px auto;
+      position: relative;
+      border-radius: 25px;
+      padding: 6px;
+
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+
+      box-shadow:
+        0 0 20px rgba(255, 105, 135, 0.6),
+        0 0 40px rgba(255, 105, 135, 0.3);
+
+      transition: 0.4s;
+    }
+
+    .slideshow:hover {
+      transform: scale(1.05);
+    }
+
+    .frame-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 1s, transform 4s;
+    }
+
+    .active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* FLOATING HEARTS */
+    .floating {
+      position: fixed;
+      color: rgba(255,255,255,0.6);
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    .cake {
+      font-size: 60px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="intro">FOR SOMEONE SPECIAL ❤️</div>
+
+<div id="main">
+
+<h1>Happy Birthday My Love 💖</h1>
+<div class="heart">💓</div>
+
+<div class="card">
+  <p id="message">Click below for your surprise 🎁</p>
+  <button onclick="startSurprise()">Start Surprise 🎉</button>
+</div>
+
+<!-- 🌟 BEAUTIFUL FRAME -->
+<div class="slideshow">
+  <div class="frame-inner">
+
+    <div class="slide active"><img src="1.1.jpeg"></div>
+  <div class="slide"><img src="1.jpeg"></div>
+  <div class="slide"><img src="2.jpeg"></div>
+  <div class="slide"><img src="3.jpeg"></div>
+  <div class="slide"><img src="4.jpeg"></div>
+  <div class="slide"><img src="5.jpeg"></div>
+  <div class="slide"><img src="6.jpeg"></div>
+  <div class="slide"><img src="7.jpeg"></div>
+  <div class="slide"><img src="8.jpeg"></div>
+  <div class="slide"><img src="9.jpeg"></div>
+  <div class="slide"><img src="10.jpeg"></div>
+  <div class="slide"><img src="11.jpeg"></div>
+  <div class="slide"><img src="12.jpeg"></div>
+  <div class="slide"><img src="13.jpeg"></div>
+  <div class="slide"><img src="14.jpeg"></div>
+  <div class="slide"><img src="15.jpeg"></div>
+  <div class="slide"><img src="16.jpeg"></div>
+  <div class="slide"><img src="17.jpeg"></div>
+  <div class="slide"><img src="18.jpeg"></div>
+  <div class="slide"><img src="19.jpeg"></div>
+  <div class="slide"><img src="20.jpeg"></div>
+  <div class="slide"><img src="21.jpeg"></div>
+  <div class="slide"><img src="22.jpeg"></div>
+  <div class="slide"><img src="23.jpeg"></div>
+  <div class="slide"><img src="24.jpeg"></div>
+</div>
+
+<div class="cake">🎂</div>
+
+<audio id="music" preload="auto">
+  <source src="Bolona__Lyrics__Song___Munna_Islam___বলোনা___Soft_Song_Lyrics__(256k).mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+/* SHOW MAIN */
+setTimeout(() => {
+  document.getElementById("main").style.display = "block";
+}, 6000);
+
+/* SLIDESHOW */
+let index = 0;
+let slides = document.getElementsByClassName("slide");
+
+function showSlides() {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+  }
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}
+setInterval(showSlides, 3500);
+
+/* TYPING */
+function typeWriter(text, i) {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML =
+      text.substring(0, i + 1);
+    setTimeout(() => typeWriter(text, i + 1), 25);
+  }
+}
+
+/* FLOATING HEARTS */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "floating";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.innerHTML = "💖";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 800);
+
+/* START */
+function startSurprise() {
+  let text = `Zebu Raisa 💖,<br><br>
+  You are my happiness, my peace, my everything 💕<br>
+  Every moment with you feels magical ✨<br><br>
+  I am so lucky to have you ❤️<br>
+  Happy Birthday My Love 🎂💖<br><br>
+  I love you forever... 💞`;
+
+  typeWriter(text, 0);
+
+  let music = document.getElementById("music");
+  music.volume = 0.7;
+  music.play().catch(() => {});
+
+  confetti({
+    particleCount: 250,
+    spread: 120,
+    origin: { y: 0.6 }
+  });
+}
+</script>
+
+</body>
+</html>
